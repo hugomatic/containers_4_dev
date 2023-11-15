@@ -1,0 +1,77 @@
+Groups and users
+
+Creating a group in a Unix-like system and giving its users access to specific
+resources involves a few steps. Here's a detailed guide on how to do this:
+
+1. Create a New Group
+
+To create a new group, use the groupadd command. For example, to create a
+group named mygroup:
+
+  sudo groupadd mygroup
+
+2. Add Users to the Group
+
+To add users to this group, use the usermod command. For example, to add a user
+named username to mygroup:
+
+  sudo usermod -aG mygroup username
+
+-aG option adds the user to the supplementary group (mygroup in this case).
+Make sure to replace username with the actual username.
+
+3. Set Group Ownership on Resources
+
+To give the group access to certain files or directories, change the group
+ownership of these resources to your new group. For example, to change the group
+ownership of a directory /path/to/directory to mygroup:
+
+    sudo chown :mygroup /path/to/directory
+
+This command keeps the current owner but changes the group to mygroup.
+
+4. Set Permissions
+
+Set appropriate permissions on the resources so that the group members can
+access them. Unix permissions are read (r), write (w), and execute (x).
+Use the chmod command to set these permissions.
+
+For example, to give group members read and write access to /path/to/directory:
+
+
+  sudo chmod 770 /path/to/directory
+
+Here, 770 means full permissions for the owner and the group, and no permissions
+for others.
+
+5. Apply Changes
+
+For changes to group membership to take effect, users usually need to log out
+and log back in. In some cases, a system reboot might be required.
+
+Example: Creating a Shared Folder
+
+Let's say you want to create a shared folder that all members of mygroup can
+access and modify:
+
+Create the group:
+
+    sudo groupadd mygroup
+
+Add users to the group:
+
+
+    sudo usermod -aG mygroup user1
+    sudo usermod -aG mygroup user2
+
+Repeat for all users you want to add
+
+Create the shared directory and set its group ownership:
+
+
+    sudo mkdir /path/to/sharedfolder
+    sudo chown :mygroup /path/to/sharedfolder
+
+Set permissions so all group members can read, write, and execute:
+
+    sudo chmod 2770 /path/to/sharedfolder
