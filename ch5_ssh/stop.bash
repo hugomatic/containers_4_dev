@@ -1,1 +1,1 @@
-docker stop ssh_con && docker rm ch4_container
+docker stop ssh_con && docker rm ch5_ssh_container
