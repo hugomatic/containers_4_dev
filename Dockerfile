@@ -46,6 +46,7 @@ RUN mkdir -p /home/ubuntu/.ssh && \
 # Expose the SSH port
 EXPOSE 22
 
+
 # Start the SSH daemon
 CMD ["/usr/sbin/sshd", "-D"]
 
